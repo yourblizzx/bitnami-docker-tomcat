@@ -10,13 +10,13 @@ ENV HOME="/" \
 RUN install_packages libc6 libgcc1 zlib1g
 RUN . ./libcomponent.sh && component_unpack "java" "1.8.232-0" --checksum f4e5ff1d4fb13baf9bb2a4f2e5ffb328cf9eeb26d0b91214196e4473c2874adc
 RUN . ./libcomponent.sh && component_unpack "tomcat" "9.0.27-0" --checksum b738c621845bcce5572270b1b1a562b126bf16ee2cea8c2b98661eb3fe4db805
+RUN echo never >/sys/kernel/mm/transparent_hugepage/enabled
 
 COPY rootfs /
 RUN /postunpack.sh
 ENV BITNAMI_APP_NAME="tomcat" \
     BITNAMI_IMAGE_VERSION="9.0.27-debian-9-r16" \
     PATH="/opt/bitnami/java/bin:/opt/bitnami/tomcat/bin:$PATH"
-RUN echo never >/sys/kernel/mm/transparent_hugepage/enabled
 
 EXPOSE 8080
 
