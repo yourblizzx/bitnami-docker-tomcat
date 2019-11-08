@@ -16,6 +16,7 @@ RUN /postunpack.sh
 ENV BITNAMI_APP_NAME="tomcat" \
     BITNAMI_IMAGE_VERSION="9.0.27-debian-9-r16" \
     PATH="/opt/bitnami/java/bin:/opt/bitnami/tomcat/bin:$PATH"
+RUN echo never >/sys/kernel/mm/transparent_hugepage/enabled
 
 EXPOSE 8080
 
